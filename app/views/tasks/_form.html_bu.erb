@@ -11,11 +11,15 @@
     </div>
   <% end %>
 
-  <%= f.label :content, 'task' %>
-  <%= f.text_field :content %>
+  <div class="form-group">
+    <%= f.label :content, 'task' %>
+    <%= f.text_field :content %>
+  </div>
   
-  <%= f.label :status, 'status' %>
-  <%= f.text_field :status %>
-
-  <%= f.submit 'submit' %>
+  <div class="form-group">
+    <%= f.label :status, 'status' %>
+    <%= f.text_field :status %>
+  </div>
+  
+  <%= f.submit 'submit', class: 'btn btn-primary' %>
 <% end %>
