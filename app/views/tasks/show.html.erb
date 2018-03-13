@@ -15,6 +15,10 @@
   </tr>
 </table>
 
-<%= link_to 'edit this task', edit_task_path, class: 'btn btn-default' %>
-<%= link_to 'delete this task', @task, method: :delete, class: 'btn btn-danger', data: { confirm: 'are you sure you want to delete task?'} %>
+<% if logged_in? %>
+  <% if current_user == @task.user %>
+    <%= link_to 'edit this task', edit_task_path, class: 'btn btn-default' %>
+    <%= link_to 'delete this task', @task, method: :delete, class: 'btn btn-danger', data: { confirm: 'are you sure you want to delete task?'} %>
+  <% end %>
+<% end %>
 <!--<%= link_to 'back to list', tasks_path %>-->
