@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :show, :create, :update, :destroy, ]
+  before_action :correct_user, only: [:edit, :show, :update, :destroy]
   
   
   def index
