@@ -7,7 +7,7 @@
 <!--</ul>-->
 
 <% if logged_in? %>
-  <% if @tasks.any? %>
+  <% if current_user.tasks.any? %>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -17,14 +17,12 @@
         </tr>
       </thead>
       <tbody>
-        <% @tasks.each do |task| %>
-          <% if current_user == task.user %>
+        <% current_user.tasks.reverse_each do |task| %>
             <tr>
               <td><%= link_to task.id, task %></td>
               <td><%= task.content %></td>
               <td><%= task.status %></td>
             </tr>
-          <% end %>
         <% end %>
       </tbody>
     </table>

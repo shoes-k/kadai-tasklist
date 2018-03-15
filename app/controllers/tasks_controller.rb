@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy, :show]
+  before_action :correct_user, only: [:edit, :show]
   
   
   def index
-    @tasks = Task.all.page(params[:page]).per(10)
+    @tasks = current_user.tasks.page(params[:page])
   end
 
   def show
@@ -54,11 +54,11 @@ class TasksController < ApplicationController
   end
   
   def task_params
-    params.require(:task).permit(:content, :status)
+    params.require(:task).permit(:content, :status, :user)
   end
 
   def correct_user
-    @task = current_user.tasks.find_by(id: params[:id])
+    @tasks = current_user.tasks.find_by(id: params[:id])
     unless @tasks
       flash[:danger] = 'you are invalid user'
       redirect_to root_url
