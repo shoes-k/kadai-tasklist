@@ -1,10 +1,12 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :show]
+  before_action :correct_user, only: [:edit, :show, :create, :update, :destroy, ]
   
   
   def index
-    @tasks = current_user.tasks.page(params[:page])
+    if logged_in?
+      @tasks = current_user.tasks.page(params[:page])
+    end
   end
 
   def show
